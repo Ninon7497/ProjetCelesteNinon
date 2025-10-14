@@ -1,0 +1,58 @@
+{
+    "start": "scene_arrivee",
+    "nodes": {
+      "scene_arrivee": {
+        "text": "Une pluie fine tombe sur la route déserte. Vous arrivez devant le motel 'Raven Inn', plongé dans le noir. L’atmosphère est lourde et le silence pesant.",
+        "choices": [
+          {
+            "label": "Inspecter le corps dans la chambre 3",
+            "to": "scene_corps",
+            "log": "Inspecté le corps dans la chambre 3"
+          },
+          {
+            "label": "Interroger le réceptionniste au comptoir",
+            "to": "scene_reception",
+            "log": "Interrogé le réceptionniste"
+          }
+        ],
+        "image": "images/motel_nuit.jpg"
+      },
+  
+      "scene_corps": {
+        "text": "Vous pénétrez dans la chambre sombre. Sur le lit, un corps gît, la gorge tranchée. Le silence est interrompu par la pluie qui tambourine aux fenêtres.",
+        "choices": [
+          {
+            "label": "Examiner la scène de crime de plus près",
+            "to": "scene_exam_crime",
+            "requiresRoll": { "skill": "observation", "dc": 12 },
+            "log": "Examiné la scène de crime"
+          },
+          {
+            "label": "Retourner à la réception",
+            "to": "scene_reception",
+            "log": "Retour à la réception"
+          }
+        ],
+        "image": "images/chambre_corps.jpg"
+      },
+  
+      "scene_reception": {
+        "text": "Le réceptionniste vous regarde, nerveux. Il affirme ne rien avoir vu, mais vous sentez une légère hésitation dans sa voix.",
+        "choices": [
+          {
+            "label": "Insister pour obtenir plus d’informations",
+            "to": "scene_insiste_reception",
+            "requiresRoll": { "skill": "charisme", "dc": 14 },
+            "log": "Insisté auprès du réceptionniste"
+          },
+          {
+            "label": "Retourner inspecter la chambre",
+            "to": "scene_corps",
+            "log": "Retour à la chambre"
+          }
+        ],
+        "image": "images/receptionniste.jpg"
+      }
+    }
+  }
+  
