@@ -52,7 +52,99 @@
           }
         ],
         "image": "images/receptionniste.jpg"
-      }
+      },
+      "scene_detail_crime": {
+        "text": "En examinant de plus près la scène de crime, vous remarquez des empreintes de boues partant vers la fenêtre.",
+        "choices": [
+          {
+            "label": "Noter les indices et retourner à la réception",
+            "to": "scene_reception",
+            "log": "Noté traces de pas"
+          },
+          {
+            "label": "Chercher des empreintes près de la fenêtre",
+            "to": "scene_fenetre",
+            "log": "Cherché empreintes près de la fenêtre"
+          }
+        ],
+        "image": "images/empreintes.jpg"
+      },
+      "scene_fuite_personne": {
+        "text": "En sortant discrètement du motel, vous apercevez une silhouette qui s’éloigne rapidement dans la nuit pluvieuse. Quelqu’un fuit !",
+        "choices": [
+          {
+            "label": "Poursuivre la personne",
+            "to": "scene_poursuite_nuit",
+            "log": "Tentative de poursuite de la silhouette"
+          },
+          {
+            "label": "Rester sur place et appeler du renfort",
+            "to": "scene_appel_renfort",
+            "log": "Appelé des renforts"
+          }
+        ],
+        "image": "images/silhouette_fuite.jpg"
+      },
+      "scene_poursuite_nuit": {
+        "text": "Vous vous lancez à la poursuite dans l’obscurité, la pluie rendant la visibilité difficile. Un jet d’intuition pourrait vous aider à ne pas perdre la trace.",
+        "choices": [
+          {
+            "label": "Faire un jet d'intuition pour ne pas perdre la piste",
+            "to": "scene_fin_poursuite_succes",
+            "requiresRoll": { "skill": "intuition", "dc": 14 },
+            "log": "Poursuite réussie"
+          },
+          {
+            "label": "Abandonner la poursuite et revenir au motel",
+            "to": "scene_reception",
+            "log": "Abandonné la poursuite"
+          }
+        ],
+       
+        "image": "images/course_pluie.jpg"
+      },
+
+      "scene_appel_renfort": {
+        "text": "Vous décidez de rester prudent et appelez les renforts. Ils arriveront bientôt, mais la silhouette a disparu dans la nuit.",
+        "choices": [
+            {
+              "label": "Retourner inspecter la chambre",
+              "to": "scene_corps",
+              "log": "Retour à la chambre après appel des renforts"
+            }
+          ],
+          "image": "images/renforts_arrivee.jpg"
+        },
+
+        "scene_fin_poursuite_succes": {
+            "text": "Vous attrapez le suspect, qui avoue rapidement sous votre interrogation. L’affaire semble bientôt close.",
+            "choices": [
+              {
+                "label": "Arrêter le suspect et appeler les renforts",
+                "to": "scene_fin_victoire",
+                "log": "Suspect arrêté"
+              }
+            ],
+            "image": "images/arrestation.jpg"
+          },
+      
+          "scene_fin_victoire": {
+            "text": "Félicitations, vous avez résolu l’affaire !!",
+            "choices": [],
+            "image": "images/fin_victoire.jpg"
+          },
+      
+          "scene_attente": {
+            "text": "Vous décidez d’attendre la police. Le temps passe lentement...",
+            "choices": [
+              {
+                "label": "Revenir inspecter la chambre",
+                "to": "scene_corps",
+                "log": "Retour à la chambre après attente"
+              }
+            ],
+            "image": "images/attente.jpg"
+          }
     }
   }
   
