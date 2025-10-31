@@ -1,6 +1,14 @@
 {
+  "name": "aventure-crime",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "play": "node src/index.js"
+  },
   "dependencies": {
-    "chalk": "^5.6.2",
-    "inquirer": "^12.10.0"
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.0",
+    "xmlbuilder2": "^3.1.1"
   }
 }

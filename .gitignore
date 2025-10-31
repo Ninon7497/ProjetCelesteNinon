@@ -1,0 +1,21 @@
+# === Node.js ===
+node_modules/
+npm-debug.log
+package-lock.json
+
+# === Environnements ===
+.env
+.DS_Store
+
+# === Sauvegardes et données ===
+src/game.xml
+data/game.xml
+*.log
+
+# === Dossiers d'export ===
+export/
+src/export/
+
+# === Autres fichiers temporaires ===
+*.tmp
+*.bak
