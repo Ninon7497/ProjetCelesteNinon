@@ -1,302 +1,305 @@
 {
-    "start": "scene_arrivee",
-    "nodes": {
-      "scene_arrivee": {
-        "text": "Une pluie fine tombe sur la route déserte. Vous arrivez devant le motel 'Raven Inn', plongé dans le noir. L’atmosphère est lourde et le silence pesant.",
-        "choices": [
-          {
-            "label": "Inspecter le corps dans la chambre 3",
-            "to": "scene_corps",
-            "log": "Inspecté le corps dans la chambre 3"
-          },
-          {
-            "label": "Interroger le réceptionniste au comptoir",
-            "to": "scene_reception",
-            "log": "Interrogé le réceptionniste"
-          }
-        ],
-        "image": "images/motel_nuit.png"
-      },
-  
-      "scene_corps": {
-        "text": "Vous pénétrez dans la chambre sombre. Sur le lit, un corps gît, la gorge tranchée. Le silence est interrompu par la pluie qui tambourine aux fenêtres.",
-        "choices": [
-          {
-            "label": "Examiner la scène de crime de plus près",
-            "to": "scene_detail_crime",
-            "requiresRoll": { "skill": "observation", "dc": 12 },
-            "log": "Examiné la scène de crime"
-          },
-          {
-            "label": "Retourner à la réception",
-            "to": "scene_reception",
-            "log": "Retour à la réception"
-          }
-        ],
-        "image": "images/chambre_corps.jpg"
-      },
-  
-      "scene_reception": {
-        "text": "Le réceptionniste vous regarde, nerveux. Il affirme ne rien avoir vu, mais vous sentez une légère hésitation dans sa voix.",
-        "choices": [
-          {
-            "label": "Insister pour obtenir plus d’informations",
-            "to": "scene_insiste_reception",
-            "requiresRoll": { "skill": "charisme", "dc": 14 },
-            "log": "Insisté auprès du réceptionniste"
-          },
-          {
-            "label": "Demander la liste des clients présents",
-            "to": "scene_clients",
-            "log": "Demandé la liste des clients"
-          },
-          {
-            "label": "Retourner inspecter la chambre",
-            "to": "scene_corps",
-            "log": "Retour à la chambre"
-          }
-        ],
-        "image": "images/receptionniste.jpg"
-      },
-  
-      "scene_insiste_reception": {
-        "text": "Le réceptionniste transpire. Il bredouille qu’il a entendu un bruit étrange dans la chambre 3, mais nie toute implication. Vous remarquez une tache rouge sur sa manche...",
-        "choices": [
-          {
-            "label": "Le confronter directement",
-            "to": "scene_confrontation_reception",
-            "log": "Confronté le réceptionniste"
-          },
-          {
-            "label": "Noter l’information et aller interroger un client",
-            "to": "scene_clients",
-            "log": "Décidé d’interroger les clients"
-          }
-        ],
-        "image": "images/receptionniste_stress.jpg"
-      },
-  
-      "scene_clients": {
-        "text": "Le registre indique trois clients cette nuit : une femme nommée Clara (chambre 1), un homme nommé Daniel (chambre 2), et la victime dans la chambre 3.",
-        "choices": [
-          {
-            "label": "Aller interroger Clara (chambre 1)",
-            "to": "scene_clara",
-            "log": "Interrogé Clara"
-          },
-          {
-            "label": "Aller interroger Daniel (chambre 2)",
-            "to": "scene_daniel",
-            "log": "Interrogé Daniel"
-          },
-          {
-            "label": "Retourner au réceptionniste",
-            "to": "scene_reception",
-            "log": "Retour à la réception"
-          }
-        ],
-        "image": "images/registre.jpg"
-      },
-  
-      "scene_clara": {
-        "text": "Clara ouvre la porte, paniquée. Elle dit avoir entendu un cri vers 23h. Elle ajoute avoir vu le réceptionniste entrer dans la chambre 3 peu après.",
-        "choices": [
-          {
-            "label": "La remercier et interroger Daniel",
-            "to": "scene_daniel",
-            "log": "Interrogé Daniel après Clara"
-          },
-          {
-            "label": "Aller confronter le réceptionniste avec cette information",
-            "to": "scene_confrontation_reception",
-            "log": "Confronté le réceptionniste après le témoignage de Clara"
-          }
-        ],
-        "image": "images/femme_peur.jpg"
-      },
-  
-      "scene_daniel": {
-        "text": "Daniel semble calme. Il prétend n’avoir rien entendu, mais vous remarquez qu’il évite votre regard. Il porte une veste humide, comme s’il venait d’entrer.",
-        "choices": [
-          {
-            "label": "L’accuser d’être le tueur",
-            "to": "scene_fausse_accusation",
-            "log": "Accusé Daniel à tort"
-          },
-          {
-            "label": "Le menacer pour le faire parler",
-            "to": "scene_menace_daniel",
-            "requiresRoll": { "skill": "charisme", "dc": 15 },
-            "log": "Intimidé Daniel"
-          },
-          {
-            "label": "Le laisser tranquille et retourner à la réception",
-            "to": "scene_reception",
-            "log": "Abandonné l’interrogatoire de Daniel"
-          }
-        ],
-        "image": "images/homme_suspect.jpg"
-      },
-  
-      "scene_menace_daniel": {
-        "text": "Sous la pression, Daniel finit par avouer qu’il a entendu une dispute entre le réceptionniste et la victime plus tôt dans la soirée.",
-        "choices": [
-          {
-            "label": "Aller confronter le réceptionniste",
-            "to": "scene_confrontation_reception",
-            "log": "Confronté le réceptionniste après le témoignage de Daniel"
-          }
-        ],
-        "image": "images/homme_inquiet.jpg"
-      },
-  
-      "scene_confrontation_reception": {
-        "text": "Le réceptionniste pâlit. Il recule lentement, la main dans sa poche. Vous distinguez le reflet d’une lame...",
-        "choices": [
-          {
-            "label": "Tenter de le désarmer",
-            "to": "scene_desarmement",
-            "requiresRoll": { "skill": "force", "dc": 13 },
-            "log": "Tentative de désarmement"
-          },
-          {
-            "label": "Sortir votre arme et le menacer",
-            "to": "scene_menace_reception",
-            "log": "Menacé le réceptionniste"
-          }
-        ],
-        "image": "images/confrontation.jpg"
-      },
-  
-      "scene_desarmement": {
-        "text": "Vous vous jetez sur lui, mais il est plus rapide. Le couteau brille dans la lumière... Vous sentez une douleur fulgurante dans votre abdomen. Vous tombez au sol.",
-        "choices": [
-          {
-            "label": "Fin tragique",
-            "to": "scene_mort",
-            "log": "Tué par le réceptionniste"
-          }
-        ],
-        "image": "images/mort_detective.jpg"
-      },
-  
-      "scene_menace_reception": {
-        "text": "Sous la menace, le réceptionniste craque. Il avoue qu’il a tué la victime après une dispute liée à de l’argent volé. Vous appelez les renforts.",
-        "choices": [
-          {
-            "label": "Mettre le réceptionniste en état d’arrestation",
-            "to": "scene_fin_victoire",
-            "log": "Affaire résolue : réceptionniste arrêté"
-          }
-        ],
-        "image": "images/arrestation.jpg"
-      },
-  
-      "scene_fausse_accusation": {
-        "text": "Vous accusez Daniel, persuadé de sa culpabilité. Mais il s’avère innocent : le vrai tueur, le réceptionniste, profite de votre erreur pour s’enfuir. Vous êtes suspendu pour incompétence.",
-        "choices": [
-          {
-            "label": "Rejouer depuis le début",
-            "to": "scene_arrivee",
-            "log": "Nouvelle enquête commencée"
-          }
-        ],
-        "image": "images/erreur_accusation.jpg"
-      },
-  
-      "scene_detail_crime": {
-        "text": "En examinant la scène, vous remarquez des empreintes de boue menant à la fenêtre, et une clé de la réception sur le sol.",
-        "choices": [
-          {
-            "label": "Noter les indices et retourner à la réception",
-            "to": "scene_reception",
-            "log": "Noté traces et clé suspecte"
-          },
-          {
-            "label": "Chercher des empreintes dehors",
-            "to": "scene_fuite_personne",
-            "log": "Sorti pour examiner les traces dehors"
-          }
-        ],
-        "image": "images/empreintes.jpg"
-      },
-  
-      "scene_fuite_personne": {
-        "text": "En sortant du motel, vous apercevez une silhouette s’éloignant dans la nuit. Quelqu’un fuit !",
-        "choices": [
-          {
-            "label": "Poursuivre la personne",
-            "to": "scene_poursuite_nuit",
-            "log": "Tentative de poursuite"
-          },
-          {
-            "label": "Rester sur place et appeler du renfort",
-            "to": "scene_appel_renfort",
-            "log": "Appelé des renforts"
-          }
-        ],
-        "image": "images/silhouette_fuite.jpg"
-      },
-  
-      "scene_poursuite_nuit": {
-        "text": "Vous courez dans la pluie. La silhouette se retourne brièvement : c’est le réceptionniste !",
-        "choices": [
-          {
-            "label": "Faire un jet d’intuition pour ne pas perdre la piste",
-            "to": "scene_fin_poursuite_succes",
-            "requiresRoll": { "skill": "intuition", "dc": 14 },
-            "log": "Poursuite réussie"
-          },
-          {
-            "label": "Abandonner et revenir au motel",
-            "to": "scene_reception",
-            "log": "Abandonné la poursuite"
-          }
-        ],
-        "image": "images/course_pluie.jpg"
-      },
-  
-      "scene_fin_poursuite_succes": {
-        "text": "Vous attrapez le réceptionniste. Il avoue tout, effondré : la victime avait découvert qu’il volait les clients. Vous avez résolu l’affaire.",
-        "choices": [
-          {
-            "label": "Appeler les renforts et clôturer l’enquête",
-            "to": "scene_fin_victoire",
-            "log": "Réceptionniste arrêté après aveux"
-          }
-        ],
-        "image": "images/arrestation.jpg"
-      },
-  
-      "scene_appel_renfort": {
-        "text": "Vous décidez de rester prudent et appelez les renforts. Mais pendant ce temps, le réceptionniste s’enfuit. L’enquête se complique...",
-        "choices": [
-          {
-            "label": "Revenir inspecter la chambre",
-            "to": "scene_corps",
-            "log": "Retour à la chambre après appel des renforts"
-          }
-        ],
-        "image": "images/renforts_arrivee.jpg"
-      },
-  
-      "scene_mort": {
-        "text": "Vous sentez la vie vous quitter... Votre enquête s’achève dans la pluie froide du 'Raven Inn'.",
-        "choices": [
-          {
-            "label": "Rejouer depuis le début",
-            "to": "scene_arrivee",
-            "log": "Nouvelle partie après la mort"
-          }
-        ],
-        "image": "images/mort_detective.jpg"
-      },
-  
-      "scene_fin_victoire": {
-        "text": "Félicitations, vous avez élucidé le meurtre du 'Raven Inn'. Le réceptionniste est sous les verrous, et la justice est rendue.",
-        "choices": [],
-        "image": "images/fin_victoire.jpg"
-      }
+  "start": "scene_arrivee",
+  "nodes": {
+    "scene_arrivee": {
+      "text": "Une pluie fine tombe sur la route déserte. Vous arrivez devant le motel 'Raven Inn', plongé dans le noir. L’atmosphère est lourde et le silence pesant.",
+      "choices": [
+        {
+          "label": "Inspecter le corps dans la chambre 3",
+          "to": "scene_corps",
+          "log": "Inspecté le corps dans la chambre 3"
+        },
+        {
+          "label": "Interroger le réceptionniste au comptoir",
+          "to": "scene_reception",
+          "log": "Interrogé le réceptionniste"
+        }
+      ],
+      "image": "images/motel_nuit.png"
+    },
+
+    "scene_corps": {
+      "text": "Vous pénétrez dans la chambre sombre. Sur le lit, un corps gît, la gorge tranchée. Le silence est interrompu par la pluie qui tambourine aux fenêtres.",
+      "choices": [
+        {
+          "label": "Examiner la scène de crime de plus près",
+          "to": "scene_detail_crime",
+          "requiresRoll": { "skill": "observation", "dc": 12 },
+          "log": "Examiné la scène de crime"
+        },
+        {
+          "label": "Retourner à la réception",
+          "to": "scene_reception",
+          "log": "Retour à la réception"
+        }
+      ],
+      "image": "images/chambre_corps.jpg"
+    },
+
+    "scene_reception": {
+      "text": "Le réceptionniste vous regarde, nerveux. Il affirme ne rien avoir vu, mais vous sentez une légère hésitation dans sa voix.",
+      "choices": [
+        {
+          "label": "Insister pour obtenir plus d’informations",
+          "to": "scene_insiste_reception",
+          "requiresRoll": { "skill": "charisme", "dc": 14 },
+          "log": "Insisté auprès du réceptionniste"
+        },
+        {
+          "label": "Demander la liste des clients présents",
+          "to": "scene_clients",
+          "log": "Demandé la liste des clients"
+        },
+        {
+          "label": "Retourner inspecter la chambre",
+          "to": "scene_corps",
+          "log": "Retour à la chambre"
+        }
+      ],
+      "image": "images/receptionniste.jpg"
+    },
+
+    "scene_insiste_reception": {
+      "text": "Le réceptionniste transpire. Il bredouille qu’il a entendu un bruit étrange dans la chambre 3, mais nie toute implication. Vous remarquez une tache rouge sur sa manche...",
+      "choices": [
+        {
+          "label": "Le confronter directement",
+          "to": "scene_confrontation_reception",
+          "log": "Confronté le réceptionniste"
+        },
+        {
+          "label": "Noter l’information et aller interroger un client",
+          "to": "scene_clients",
+          "log": "Décidé d’interroger les clients"
+        }
+      ],
+      "image": "images/receptionniste_stress.jpg"
+    },
+
+    "scene_clients": {
+      "text": "Le registre indique trois clients cette nuit : une femme nommée Clara (chambre 1), un homme nommé Daniel (chambre 2), et la victime dans la chambre 3.",
+      "choices": [
+        {
+          "label": "Aller interroger Clara (chambre 1)",
+          "to": "scene_clara",
+          "log": "Interrogé Clara"
+        },
+        {
+          "label": "Aller interroger Daniel (chambre 2)",
+          "to": "scene_daniel",
+          "log": "Interrogé Daniel"
+        },
+        {
+          "label": "Retourner au réceptionniste",
+          "to": "scene_reception",
+          "log": "Retour à la réception"
+        }
+      ],
+      "image": "images/registre.jpg"
+    },
+
+    "scene_clara": {
+      "text": "Clara ouvre la porte, paniquée. Elle dit avoir entendu un cri vers 23h. Elle ajoute avoir vu le réceptionniste entrer dans la chambre 3 peu après.",
+      "choices": [
+        {
+          "label": "La remercier et interroger Daniel",
+          "to": "scene_daniel",
+          "log": "Interrogé Daniel après Clara"
+        },
+        {
+          "label": "Aller confronter le réceptionniste avec cette information",
+          "to": "scene_confrontation_reception",
+          "log": "Confronté le réceptionniste après le témoignage de Clara"
+        }
+      ],
+      "image": "images/femme_peur.jpg"
+    },
+
+    "scene_daniel": {
+      "text": "Daniel semble calme. Il prétend n’avoir rien entendu, mais vous remarquez qu’il évite votre regard. Il porte une veste humide, comme s’il venait d’entrer.",
+      "choices": [
+        {
+          "label": "L’accuser d’être le tueur",
+          "to": "scene_fausse_accusation",
+          "log": "Accusé Daniel à tort"
+        },
+        {
+          "label": "Le menacer pour le faire parler",
+          "to": "scene_menace_daniel",
+          "requiresRoll": { "skill": "charisme", "dc": 15 },
+          "log": "Intimidé Daniel"
+        },
+        {
+          "label": "Le laisser tranquille et retourner à la réception",
+          "to": "scene_reception",
+          "log": "Abandonné l’interrogatoire de Daniel"
+        }
+      ],
+      "image": "images/homme_suspect.jpg"
+    },
+
+    "scene_menace_daniel": {
+      "text": "Sous la pression, Daniel finit par avouer qu’il a entendu une dispute entre le réceptionniste et la victime plus tôt dans la soirée.",
+      "choices": [
+        {
+          "label": "Aller confronter le réceptionniste",
+          "to": "scene_confrontation_reception",
+          "log": "Confronté le réceptionniste après le témoignage de Daniel"
+        }
+      ],
+      "image": "images/homme_inquiet.jpg"
+    },
+
+    "scene_confrontation_reception": {
+      "text": "Le réceptionniste pâlit. Il recule lentement, la main dans sa poche. Vous distinguez le reflet d’une lame...",
+      "choices": [
+        {
+          "label": "Tenter de le désarmer",
+          "to": "scene_desarmement",
+          "requiresRoll": { "skill": "force", "dc": 13 },
+          "log": "Tentative de désarmement"
+        },
+        {
+          "label": "Sortir votre arme et le menacer",
+          "to": "scene_menace_reception",
+          "log": "Menacé le réceptionniste"
+        }
+      ],
+      "image": "images/confrontation.jpg"
+    },
+
+    "scene_desarmement": {
+      "text": "Vous vous jetez sur lui, mais il est plus rapide. Le couteau brille dans la lumière... Vous sentez une douleur fulgurante dans votre abdomen. Vous tombez au sol.",
+      "choices": [
+        {
+          "label": "Fin tragique",
+          "to": "scene_mort",
+          "log": "Tué par le réceptionniste"
+        }
+      ],
+      "image": "images/mort_detective.jpg",
+      "end": "echec"
+    },
+
+    "scene_menace_reception": {
+      "text": "Sous la menace, le réceptionniste craque. Il avoue qu’il a tué la victime après une dispute liée à de l’argent volé. Vous appelez les renforts.",
+      "choices": [
+        {
+          "label": "Mettre le réceptionniste en état d’arrestation",
+          "to": "scene_fin_victoire",
+          "log": "Affaire résolue : réceptionniste arrêté"
+        }
+      ],
+      "image": "images/arrestation.jpg"
+    },
+
+    "scene_fausse_accusation": {
+      "text": "Vous accusez Daniel, persuadé de sa culpabilité. Mais il s’avère innocent : le vrai tueur, le réceptionniste, profite de votre erreur pour s’enfuir. Vous êtes suspendu pour incompétence.",
+      "choices": [
+        {
+          "label": "Rejouer depuis le début",
+          "to": "scene_arrivee",
+          "log": "Nouvelle enquête commencée"
+        }
+      ],
+      "image": "images/erreur_accusation.jpg",
+      "end": "echec"
+    },
+
+    "scene_detail_crime": {
+      "text": "En examinant la scène, vous remarquez des empreintes de boue menant à la fenêtre, et une clé de la réception sur le sol.",
+      "choices": [
+        {
+          "label": "Noter les indices et retourner à la réception",
+          "to": "scene_reception",
+          "log": "Noté traces et clé suspecte"
+        },
+        {
+          "label": "Chercher des empreintes dehors",
+          "to": "scene_fuite_personne",
+          "log": "Sorti pour examiner les traces dehors"
+        }
+      ],
+      "image": "images/empreintes.jpg"
+    },
+
+    "scene_fuite_personne": {
+      "text": "En sortant du motel, vous apercevez une silhouette s’éloignant dans la nuit. Quelqu’un fuit !",
+      "choices": [
+        {
+          "label": "Poursuivre la personne",
+          "to": "scene_poursuite_nuit",
+          "log": "Tentative de poursuite"
+        },
+        {
+          "label": "Rester sur place et appeler du renfort",
+          "to": "scene_appel_renfort",
+          "log": "Appelé des renforts"
+        }
+      ],
+      "image": "images/silhouette_fuite.jpg"
+    },
+
+    "scene_poursuite_nuit": {
+      "text": "Vous courez dans la pluie. La silhouette se retourne brièvement : c’est le réceptionniste !",
+      "choices": [
+        {
+          "label": "Faire un jet d’intuition pour ne pas perdre la piste",
+          "to": "scene_fin_poursuite_succes",
+          "requiresRoll": { "skill": "intuition", "dc": 14 },
+          "log": "Poursuite réussie"
+        },
+        {
+          "label": "Abandonner et revenir au motel",
+          "to": "scene_reception",
+          "log": "Abandonné la poursuite"
+        }
+      ],
+      "image": "images/course_pluie.jpg"
+    },
+
+    "scene_fin_poursuite_succes": {
+      "text": "Vous attrapez le réceptionniste. Il avoue tout, effondré : la victime avait découvert qu’il volait les clients. Vous avez résolu l’affaire.",
+      "choices": [
+        {
+          "label": "Appeler les renforts et clôturer l’enquête",
+          "to": "scene_fin_victoire",
+          "log": "Réceptionniste arrêté après aveux"
+        }
+      ],
+      "image": "images/arrestation.jpg"
+    },
+
+    "scene_appel_renfort": {
+      "text": "Vous décidez de rester prudent et appelez les renforts. Mais pendant ce temps, le réceptionniste s’enfuit. L’enquête se complique...",
+      "choices": [
+        {
+          "label": "Revenir inspecter la chambre",
+          "to": "scene_corps",
+          "log": "Retour à la chambre après appel des renforts"
+        }
+      ],
+      "image": "images/renforts_arrivee.jpg"
+    },
+
+    "scene_mort": {
+      "text": "Vous sentez la vie vous quitter... Votre enquête s’achève dans la pluie froide du 'Raven Inn'.",
+      "choices": [
+        {
+          "label": "Rejouer depuis le début",
+          "to": "scene_arrivee",
+          "log": "Nouvelle partie après la mort"
+        }
+      ],
+      "image": "images/mort_detective.jpg",
+      "end": "echec"
+    },
+
+    "scene_fin_victoire": {
+      "text": "Félicitations, vous avez élucidé le meurtre du 'Raven Inn'. Le réceptionniste est sous les verrous, et la justice est rendue.",
+      "choices": [],
+      "image": "images/fin_victoire.jpg",
+      "end": "victoire"
     }
   }
-  
+}
