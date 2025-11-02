@@ -66,28 +66,6 @@ function visibleChoices(node) {
   return base;
 }
 
-function exportMarkdown(state) {
-  const OUT_PATH = path.join(process.cwd(), "src", "exported_adventure.md");
-
-  let md = `# Aventure de ${state.player.name}\n\n`;
-
-  state.history.forEach((entry, i) => {
-    md += `## Étape ${i + 1}: ${entry.scene}\n`;
-    md += `${entry.action}\n\n`;
-
-    if (entry.image) {
-      md += `![Image](${entry.image})\n\n`;
-    }
-  });
-
-  if (state.ending) {
-    md += `\n**Fin : ${state.ending.toUpperCase()}**\n`;
-  }
-
-  fs.writeFileSync(OUT_PATH, md, "utf8");
-  return OUT_PATH;
-}
-
 export async function startGame() {
   const story = loadStory();
 
@@ -138,15 +116,19 @@ export async function startGame() {
     }
 
     console.log(chalk.cyanBright("\n" + node.text + "\n"));
-    state.history.push({ scene: state.currentNodeKey, action: "Lecture" });
+
+    
+    state.history.push({
+      scene: state.currentNodeKey,
+      action: "Lecture",
+      image: node.image ?? null,
+    });
 
     if (node.end) {
       state.ending = node.end;
       console.log(chalk.green.bold("\n🕵️ Fin de l’enquête."));
       console.log(chalk.yellow(`Résultat : ${node.end.toUpperCase()}\n`));
       saveGame(state);
-      const out = exportMarkdown(state);
-      console.log(chalk.gray(`📄 Compte rendu de votre partie → ${out}\n`));
       break;
     }
 
@@ -193,22 +175,24 @@ export async function startGame() {
         state.history.push({
           scene: state.currentNodeKey,
           action: `Réussite ${skill} (${total}/${dc})`,
+          image: choice.image ?? node.image ?? null,
         });
       }
     } else {
       state.history.push({
         scene: state.currentNodeKey,
         action: `Choix: ${choice.label}`,
-        image: choice.image ?? null,
+        image: choice.image ?? node.image ?? null,
       });
     }
 
     state.currentNodeKey = choice.to;
-    saveGame(state); // auto-save
+    saveGame(state); 
     console.log(
       chalk.gray(`\n💾 Auto-sauvegarde mise à jour (src\\game.xml).`)
     );
   }
 
   console.log(chalk.gray("\nMerci d’avoir joué à 'Nuit de Pluie' !"));
+  return state; 
 }

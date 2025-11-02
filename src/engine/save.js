@@ -67,8 +67,6 @@ export function loadGame() {
 
     for (const [k, v] of Object.entries(prog.flags || {})) if (k.startsWith("@")) state.flags[k.slice(1)] = numberOrString(v);
     for (const [k, v] of Object.entries(prog.stats || {})) if (k.startsWith("@")) state.stats[k.slice(1)] = numberOrString(v);
-
-    // log
     const entries = prog.log?.entry || [];
     const arr = Array.isArray(entries) ? entries : [entries];
     state.history = arr.filter(Boolean).map(e => {

@@ -33,7 +33,7 @@
           "log": "Retour à la réception"
         }
       ],
-      "image": "images/chambre_corps.jpg"
+      "image": "images/chambre_corps.png"
     },
 
     "scene_reception": {
@@ -54,9 +54,14 @@
           "label": "Retourner inspecter la chambre",
           "to": "scene_corps",
           "log": "Retour à la chambre"
+        },
+        {
+          "label": "Clore l’affaire faute de preuves",
+          "to": "scene_echec_inspecteur",
+          "log": "Affaire classée sans suite"
         }
       ],
-      "image": "images/receptionniste.jpg"
+      "image": "images/receptionniste.png"
     },
 
     "scene_insiste_reception": {
@@ -73,7 +78,7 @@
           "log": "Décidé d’interroger les clients"
         }
       ],
-      "image": "images/receptionniste_stress.jpg"
+      "image": "images/receptionniste.png"
     },
 
     "scene_clients": {
@@ -94,8 +99,7 @@
           "to": "scene_reception",
           "log": "Retour à la réception"
         }
-      ],
-      "image": "images/registre.jpg"
+      ]
     },
 
     "scene_clara": {
@@ -111,8 +115,7 @@
           "to": "scene_confrontation_reception",
           "log": "Confronté le réceptionniste après le témoignage de Clara"
         }
-      ],
-      "image": "images/femme_peur.jpg"
+      ]
     },
 
     "scene_daniel": {
@@ -134,8 +137,7 @@
           "to": "scene_reception",
           "log": "Abandonné l’interrogatoire de Daniel"
         }
-      ],
-      "image": "images/homme_suspect.jpg"
+      ]
     },
 
     "scene_menace_daniel": {
@@ -146,8 +148,7 @@
           "to": "scene_confrontation_reception",
           "log": "Confronté le réceptionniste après le témoignage de Daniel"
         }
-      ],
-      "image": "images/homme_inquiet.jpg"
+      ]
     },
 
     "scene_confrontation_reception": {
@@ -164,8 +165,7 @@
           "to": "scene_menace_reception",
           "log": "Menacé le réceptionniste"
         }
-      ],
-      "image": "images/mort_detective.jpg"
+      ]
     },
 
     "scene_desarmement": {
@@ -189,20 +189,16 @@
           "to": "scene_fin_victoire",
           "log": "Affaire résolue : réceptionniste arrêté"
         }
-      ],
-      "image": "images/arrestation.jpg"
+      ]
     },
 
     "scene_fausse_accusation": {
       "text": "Vous accusez Daniel, persuadé de sa culpabilité. Mais il s’avère innocent : le vrai tueur, le réceptionniste, profite de votre erreur pour s’enfuir. Vous êtes suspendu pour incompétence.",
       "choices": [
         {
-          "label": "Rejouer depuis le début",
-          "to": "scene_arrivee",
-          "log": "Nouvelle enquête commencée"
+          "to": "scene_echec_inspecteur"
         }
       ],
-      "image": "images/erreur_accusation.jpg",
       "end": "echec"
     },
 
@@ -219,8 +215,7 @@
           "to": "scene_fuite_personne",
           "log": "Sorti pour examiner les traces dehors"
         }
-      ],
-      "image": "images/empreintes.jpg"
+      ]
     },
 
     "scene_fuite_personne": {
@@ -236,8 +231,7 @@
           "to": "scene_appel_renfort",
           "log": "Appelé des renforts"
         }
-      ],
-      "image": "images/silhouette_fuite.jpg"
+      ]
     },
 
     "scene_poursuite_nuit": {
@@ -254,8 +248,7 @@
           "to": "scene_reception",
           "log": "Abandonné la poursuite"
         }
-      ],
-      "image": "images/course_pluie.jpg"
+      ]
     },
 
     "scene_fin_poursuite_succes": {
@@ -266,8 +259,7 @@
           "to": "scene_fin_victoire",
           "log": "Réceptionniste arrêté après aveux"
         }
-      ],
-      "image": "images/arrestation.jpg"
+      ]
     },
 
     "scene_appel_renfort": {
@@ -277,9 +269,26 @@
           "label": "Revenir inspecter la chambre",
           "to": "scene_corps",
           "log": "Retour à la chambre après appel des renforts"
+        },
+        {
+          "label": "Clore l’affaire faute de preuves",
+          "to": "scene_echec_inspecteur",
+          "log": "Affaire classée sans suite après renforts"
+        }
+      ]
+    },
+
+    "scene_echec_inspecteur": {
+      "text": "L’enquête piétine. Faute de preuves exploitables et sous la pression de la hiérarchie, vous classez l’affaire. Le tueur court toujours dans la nuit battante.",
+      "choices": [
+        {
+          "label": "Rejouer depuis le début",
+          "to": "scene_arrivee",
+          "log": "Nouvelle enquête après échec sans mort"
         }
       ],
-      "image": "images/renforts_arrivee.jpg"
+      "image": "images/echec_inspecteur.png",
+      "end": "echec"
     },
 
     "scene_mort": {
