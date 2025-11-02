@@ -67,7 +67,7 @@ function visibleChoices(node) {
 }
 
 function exportMarkdown(state) {
-  const OUT_PATH = path.join(process.cwd(), "src", "xported_adventure.md");
+  const OUT_PATH = path.join(process.cwd(), "src", "exported_adventure.md");
 
   let md = `# Aventure de ${state.player.name}\n\n`;
 
