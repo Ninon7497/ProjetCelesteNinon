@@ -199,7 +199,9 @@
           "to": "scene_echec_inspecteur"
         }
       ],
+      "image": "images/echec_inspecteur.png",
       "end": "echec"
+      
     },
 
     "scene_detail_crime": {
